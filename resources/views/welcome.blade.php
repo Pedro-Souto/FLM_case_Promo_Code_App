@@ -90,7 +90,7 @@
                             </span>
                             <span>
                                 Check out the Git-Hub
-                                <a href="https://laracasts.com" target="_blank" class="inline-flex items-center space-x-1 font-medium underline underline-offset-4 text-[#f53003] dark:text-[#FF4433] ml-1">
+                                <a href="https://github.com/Pedro-Souto/FLM_case_Promo_Code_App" target="_blank" class="inline-flex items-center space-x-1 font-medium underline underline-offset-4 text-[#f53003] dark:text-[#FF4433] ml-1">
                                     <span>Repository</span>
                                     <svg
                                         width="10"
