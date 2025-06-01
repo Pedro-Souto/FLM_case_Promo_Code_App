@@ -33,8 +33,8 @@ class RouteServiceProvider extends ServiceProvider
         // Custom rate limiter for promo code validation
         RateLimiter::for('promo-validation', function (Request $request) {
             return [
-                // 10 attempts per minute per user
-                Limit::perMinute(10)->by($request->user()->id),
+                // 10 attempts per minute per user (fallback to IP if no user)
+                Limit::perMinute(10)->by($request->user()?->id ?: $request->ip()),
                 // 50 attempts per minute per IP (for additional protection)
                 Limit::perMinute(50)->by($request->ip())
             ];

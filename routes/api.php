@@ -11,11 +11,11 @@ Route::group(['prefix' => 'auth'], function () {
 
     Route::group(['middleware' => 'auth:sanctum'], function() {
         Route::post('logout', [AuthController::class, 'logout']);
-        Route::post('promo-codes/use', [PromoCodeController::class, 'use']);
-        
-        // Rate limited promo code validation
-        Route::post('promo-codes/validate', [PromoCodeController::class, 'validate'])
-             ->middleware('throttle:promo-validation');
+        Route::post('promo-codes/use', [PromoCodeController::class, 'use']);        
+    });
+    
+    Route::group(['middleware' => ['auth:sanctum', 'throttle:promo-validation']], function() {
+        Route::post('promo-codes/validate', [PromoCodeController::class, 'validate']);
     });
     
     Route::group(['middleware' => ['auth:sanctum', 'admin']], function() {
