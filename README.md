@@ -19,7 +19,81 @@ The Promo Code API provides a robust solution for managing promotional codes wit
 - [Promo Code Usage](#promo-code-usage-user)
 - [Error Handling](#error-handling)
 
+
 ---
+
+## Getting Started with Docker (Laravel Sail)
+
+If you want to run this Laravel Promo Code API using Docker, Laravel Sail provides a simple way to set up and manage your local development environment.
+
+
+## Setting Up Sail for This Project
+
+Follow these steps to run this application using Sail:
+
+### 1. Install Sail
+
+Inside the project directory, require Sail via Composer:
+
+```bash
+composer require laravel/sail --dev
+```
+
+### 2. Publish Sail's Docker Configuration
+
+Generate the default `docker-compose.yml` and related setup:
+
+```bash
+php artisan sail:install
+```
+
+> You can choose your stack (e.g., `mysql`, `redis`) when prompted, or manually edit the `docker-compose.yml` afterward.
+
+### 3. Start Docker Containers
+
+Run the containers with:
+
+```bash
+./vendor/bin/sail up
+```
+
+Or, if you've set up an alias (recommended):
+
+```bash
+sail up
+```
+
+### 4. (Optional) Set Up a Bash Alias
+
+To make `sail` easier to use, add this alias to your shell configuration (`.bashrc`, `.zshrc`, etc.):
+
+```bash
+alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
+```
+
+Then reload your shell:
+
+```bash
+source ~/.bashrc
+# or
+source ~/.zshrc
+```
+
+---
+
+## Notes
+
+* Ensure no other services are using ports `80`, `443`, or `3306`. If needed, adjust port mappings in `docker-compose.yml`.
+* Once containers are running, you can access the API at:
+  **[http://localhost:8000/api](http://localhost:8000/api)**
+* Run migrations and seeders (if required):
+
+```bash
+sail artisan migrate --seed
+```
+
+---
+
 
 ## Authentication
 All endpoints (except registration and login) require a Bearer token in the Authorization header.
