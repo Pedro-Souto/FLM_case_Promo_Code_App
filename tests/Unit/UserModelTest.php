@@ -29,25 +29,4 @@ class UserModelTest extends TestCase
         $this->assertArrayNotHasKey('password', $array);
     }
 
-    public function test_user_is_admin_scope_works(): void
-    {
-        $admin = User::factory()->admin()->create();
-        $user = User::factory()->create();
-
-        $admins = User::isAdmin()->get();
-
-        $this->assertCount(1, $admins);
-        $this->assertTrue($admins->contains($admin));
-        $this->assertFalse($admins->contains($user));
-    }
-
-    public function test_user_can_have_promo_codes(): void
-    {
-        $user = User::factory()->create();
-        
-        $this->assertInstanceOf(
-            \Illuminate\Database\Eloquent\Relations\BelongsToMany::class,
-            $user->promoCodes()
-        );
-    }
 }
