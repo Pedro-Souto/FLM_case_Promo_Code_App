@@ -60,7 +60,7 @@ class PromoCode extends Model
     {
         return Cache::remember(
             "promo_code:{$code}",
-            now()->addMinutes(15), // Cache for 15 minutes
+            now()->addMinutes(1),
             function () use ($code) {
                 return self::where('code', $code)->first();
             }
@@ -74,7 +74,7 @@ class PromoCode extends Model
     {
         return Cache::remember(
             "promo_usage:{$this->id}:user:{$userId}",
-            now()->addMinutes(10),
+            now()->addMinutes(1),
             function () use ($userId) {
                 return $this->usages()->where('user_id', $userId)->count();
             }
@@ -103,7 +103,7 @@ class PromoCode extends Model
         // Check if promo code is restricted to specific users (with caching)
         $isRestrictedToSpecificUsers = Cache::remember(
             "promo_restricted:{$this->id}",
-            now()->addMinutes(30),
+            now()->addMinutes(1),
             function () {
                 return $this->users()->exists();
             }
@@ -112,7 +112,7 @@ class PromoCode extends Model
         if ($isRestrictedToSpecificUsers) {
             $userHasAccess = Cache::remember(
                 "promo_access:{$this->id}:user:{$user->id}",
-                now()->addMinutes(30),
+                now()->addMinutes(1),
                 function () use ($user) {
                     return $this->users()->where('user_id', $user->id)->exists();
                 }

@@ -155,7 +155,7 @@ class PromoCodeController extends Controller
 
         // Calculate discount
         $discountAmount = 0;
-        if ($promoCode->type === PromoCode::TYPE_PERCENTAGE) {
+        if ($promoCode->type === 'percentage') {
             $discountAmount = ($price * $promoCode->value) / 100;
         } else {
             $discountAmount = min($promoCode->value, $price);
