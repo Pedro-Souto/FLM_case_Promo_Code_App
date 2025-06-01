@@ -337,3 +337,93 @@ Marks promo code as used without price calculation.
 | `PROMO_CODE_USAGE_LIMIT_EXCEEDED` | Global usage limit reached                     |
 | `PROMO_CODE_USER_USAGE_LIMIT_EXCEEDED` | User-specific usage limit reached          |
 | `PROMO_CODE_NOT_AVAILABLE_FOR_USER` | User not authorized to use this promo code   |
+
+
+
+
+## Test Suite Results
+
+### Command
+
+```bash
+php artisan test
+```
+
+---
+
+### `Tests\Unit\ExampleTest`
+
+* ✅ that true is true
+
+---
+
+### `Tests\Unit\PromoCodeModelTest`
+
+* ✅ promo code uses provided code
+* ✅ promo code has correct default values
+* ✅ can be used by user returns true for global promo
+* ✅ can be used by user returns true for specific user
+* ✅ can be used by user returns false for restricted promo
+* ✅ find by code cached returns correct promo
+* ✅ find by code cached returns null for nonexistent
+* ✅ record usage increments counters
+
+---
+
+### `Tests\Unit\UserModelTest`
+
+* ✅ user has correct fillable attributes
+* ✅ user password is hidden
+
+---
+
+### `Tests\Feature\AuthTest`
+
+* ✅ user can register
+* ✅ user can login
+* ✅ user cannot login with invalid credentials
+* ✅ authenticated user can logout
+* ✅ admin can get profile
+* ✅ non admin cannot get profile
+* ✅ admin can get all users
+* ✅ non admin cannot get all users
+* ✅ registration requires valid data
+* ✅ registration prevents duplicate email
+* ✅ admin user can be created
+* ✅ login requires email and password
+* ✅ unauthenticated user cannot access protected routes
+
+---
+
+### `Tests\Feature\ExampleTest`
+
+* ✅ the application returns a successful response
+
+---
+
+### `Tests\Feature\PromoCodeTest`
+
+* ✅ admin can create percentage promo code
+* ✅ admin can create value promo code
+* ✅ non admin cannot create promo code
+* ✅ admin can list promo codes
+* ✅ user can validate active percentage promo code
+* ✅ user can validate active value promo code
+* ✅ user cannot validate inactive promo code
+* ✅ user cannot validate expired promo code
+* ✅ user cannot validate nonexistent promo code
+* ✅ validation requires authentication
+* ✅ percentage promo code cannot exceed 100 percent
+* ✅ promo code creation validates required fields
+
+---
+
+### 📊 Summary
+
+* **Tests Passed:** 37
+* **Assertions:** 83
+* **Duration:** 0.54s
+
+---
+
+Let me know if you'd like to add emojis, badges, collapsible sections, or style it for GitHub README, Docusaurus, or other platforms.
