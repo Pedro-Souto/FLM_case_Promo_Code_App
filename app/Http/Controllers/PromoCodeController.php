@@ -164,7 +164,7 @@ class PromoCodeController extends Controller
         $finalPrice = max(0, $price - $discountAmount);
 
         // Record usage with cache clearing
-        $promoCode->recordUsage($user->id);
+        //$promoCode->recordUsage($user->id);
 
         return response()->json([
             'price' => $price,
