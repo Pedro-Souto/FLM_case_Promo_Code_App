@@ -425,5 +425,3 @@ php artisan test
 * **Duration:** 0.54s
 
 ---
-
-Let me know if you'd like to add emojis, badges, collapsible sections, or style it for GitHub README, Docusaurus, or other platforms.
