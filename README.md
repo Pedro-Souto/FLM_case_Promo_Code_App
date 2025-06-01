@@ -4,7 +4,8 @@
 The Promo Code API provides a robust solution for managing promotional codes with user authentication and admin features. This API allows administrators to create and manage promo codes while enabling users to validate and use them for discounts.
 
 **Base URL:** `http://localhost:8000/api`
-**Documentation:**https://documenter.getpostman.com/view/8883476/2sB2qgee3L
+
+**Documentation:** https://documenter.getpostman.com/view/8883476/2sB2qgee3L
 
 **Authentication:** Bearer Token  
 **Version:** 1.0.0
