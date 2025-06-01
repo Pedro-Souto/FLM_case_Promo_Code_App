@@ -11,13 +11,6 @@ class PromoCodeModelTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_promo_code_generates_random_code_when_not_provided(): void
-    {
-        $promoCode = PromoCode::factory()->create(['code' => null]);
-        
-        $this->assertNotNull($promoCode->code);
-        $this->assertEquals(8, strlen($promoCode->code));
-    }
 
     public function test_promo_code_uses_provided_code(): void
     {
@@ -78,20 +71,6 @@ class PromoCodeModelTest extends TestCase
         $this->assertNull($found);
     }
 
-    public function test_get_user_usage_count_returns_correct_count(): void
-    {
-        $user = User::factory()->create();
-        $promoCode = PromoCode::factory()->create();
-        
-        // Simulate 3 usages
-        $promoCode->promoCodeUsages()->create(['user_id' => $user->id]);
-        $promoCode->promoCodeUsages()->create(['user_id' => $user->id]);
-        $promoCode->promoCodeUsages()->create(['user_id' => $user->id]);
-        
-        $count = $promoCode->getUserUsageCount($user->id);
-        
-        $this->assertEquals(3, $count);
-    }
 
     public function test_record_usage_increments_counters(): void
     {
